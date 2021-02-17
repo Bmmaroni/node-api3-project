@@ -14,13 +14,13 @@ router.get('/', (req, res) => {
       .catch(err => { next(err)})
 });
 
-router.get('/:id', validateUserId(), (req, res) => {
+router.get('/:id', validateUserId, (req, res) => {
   // RETURN THE USER OBJECT
   // this needs a middleware to verify user id
   res.json(req.user)
 });
 
-router.post('/', validateUser(), (req, res) => {
+router.post('/', validateUser, (req, res) => {
   // RETURN THE NEWLY CREATED USER OBJECT
   // this needs a middleware to check that the request body is valid
   users.insert(req.params.id, req.body)
@@ -30,7 +30,7 @@ router.post('/', validateUser(), (req, res) => {
       .catch(err => { next(err)})
 });
 
-router.put('/:id', validateUser(), validateUserId(), (req, res) => {
+router.put('/:id', validateUser, validateUserId, (req, res) => {
   // RETURN THE FRESHLY UPDATED USER OBJECT
   // this needs a middleware to verify user id
   // and another middleware to check that the request body is valid
@@ -41,7 +41,7 @@ router.put('/:id', validateUser(), validateUserId(), (req, res) => {
       .catch(err => { next(err)})
 });
 
-router.delete('/:id', validateUserId(), (req, res) => {
+router.delete('/:id', validateUserId, (req, res) => {
   // RETURN THE FRESHLY DELETED USER OBJECT
   // this needs a middleware to verify user id
   users.remove(req.params.id)
@@ -55,7 +55,7 @@ router.delete('/:id', validateUserId(), (req, res) => {
       .catch(err => { next(err)})
 });
 
-router.get('/:id/posts', validateUserId(), (req, res) => {
+router.get('/:id/posts', validateUserId, (req, res) => {
   // RETURN THE ARRAY OF USER POSTS
   // this needs a middleware to verify user id
   users.getUserPosts(req.params.id)
@@ -65,7 +65,7 @@ router.get('/:id/posts', validateUserId(), (req, res) => {
       .catch(err => { next(err)})
 });
 
-router.post('/:id/posts', validatePost(), validateUserId(), (req, res) => {
+router.post('/:id/posts', validatePost, validateUserId, (req, res) => {
   // RETURN THE NEWLY CREATED USER POST
   // this needs a middleware to verify user id
   // and another middleware to check that the request body is valid
