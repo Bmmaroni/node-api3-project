@@ -2,7 +2,6 @@ const express = require('express');
 const users = require("./users-model")
 const posts = require("../posts/posts-model")
 const { validateUserId, validateUser, validatePost } = require("../middleware/middleware");
-const { whereNotExists } = require('../../data/db-config');
 
 const router = express.Router();
 
