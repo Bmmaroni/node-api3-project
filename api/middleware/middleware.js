@@ -11,7 +11,7 @@ function logger(req, res, next) {
 function validateUserId(req, res, next) {
   // DO YOUR MAGIC
   users.getById(req.params.id)
-      .then(user => {
+      .then((user) => {
         if (user) {
           req.user = user
           next()
